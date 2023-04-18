@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./becagis-sdk.css">
+</head>
+
+<body>
+    <style>
+        #map {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id="map"></div>
+    <script src="./becagis-sdk-bundle.js"></script>
+    <script>
+        var map = BCG.BecaGIS.createMap("map", { zoom: 17 }, {
+            map: {
+                layers: {
+                    overlayLayers: [
+                        {
+                            type: "GeoJSON",
+                            key: "marker_geojson",
+                            data: {
+                                "type": "Feature",
+                                "properties": {},
+                                "geometry": {
+                                    "coordinates": [[
+                                        [106.66458020843481, 11.05468402738991],
+                                        [106.66348580116204, 11.051683536663418],
+                                        [106.66362854993537, 11.05141500875915],
+                                        [106.66779205586465, 11.050364245033862],
+                                        [106.66813703206998, 11.050457646406585],
+                                        [106.66839873815695, 11.05076120066174],
+                                        [106.66792290890817, 11.054625652376998],
+                                        [106.66786343021857, 11.05474240235057],
+                                        [106.66751845401143, 11.054800777340276],
+                                        [106.66710210341944, 11.054730727350687],
+                                        [106.66692366745093, 11.055197726963257],
+                                        [106.66458020843481, 11.05468402738991]
+                                    ]],
+                                    "type": "Polygon"
+                                }
+                            },
+                            options: {
+                                showPopup: {
+                                    content: "BecaGIS Team"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./becagis-sdk.css">
+</head>
+
+<body>
+    <style>
+        #map {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id="map"></div>
+    <script src="./becagis-sdk-bundle.js"></script>
+    <script>
+        var map = BCG.BecaGIS.createMap("map", {}, {
+            geoPortal: {
+                geoPortalUrl: "https://geoportal.becamex.com.vn",
+                loginInfo: {
+                    clientId: "qxn9mfbZ8nwPFoYthjBKsS78HIeagG7MRVdZEdDU",
+                    clientSecret: "1F4ZejvgoKmg8oJdeuAx7XbnNx3uEj4f5pHeOHN8r8U4AERyY7YuTIgBdzLKf5bOsEE00CbaKwMmFXmisvrCxnoxWbxcbqfkKErwgIQgoWttc8F0TaPOLUuUwhmSO0ay",
+                    username: "admin",
+                    password: "admin"
+                },
+                layers: [{
+                    layers: "geonode:BinhDuongNewCity_ThuaDat",
+                    options: {
+                        featureInfo: true,
+                        featureInfoOptions: {
+                            showFeatureHandler: (feature) => {
+                                feature = JSON.parse(feature);
+                                console.log(feature.features[0]);
+                                BCG.geoJSON(feature.features[0]).addTo(map);
+                            }
+                        }
+                    }
+                }]
+            },
+            map: {
+                layers: {
+                    overlayLayers: [
+                        {
+                            type: "GeoJSON",
+                            key: "marker_geojson",
+                            data: {
+                                "type": "Feature",
+                                "properties": {},
+                                "geometry": {
+                                    "coordinates": [
+                                        106.6661822358538,
+                                        11.052296887021058
+                                    ],
+                                    "type": "Point"
+                                }
+                            },
+                            options: {
+                                showPopup: {
+                                    content: "BecaGIS Team"
+                                }
+                            }
+                        }
+                    ]
+                },
+                controls: {
+                    drawControl: {
+
+                    },
+                    measurementControl: false,
+                    searchPlaceControl: false
+                }
+            },
+            baseLayer: "Google"
+        })
+    </script>
+</body>
+
+</html>
