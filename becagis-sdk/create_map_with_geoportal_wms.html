@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./becagis-sdk.css">
+</head>
+
+<body>
+    <style>
+        #map {
+            height: 800px;
+            width: 800px;
+        }
+    </style>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id="map"></div>
+    <script src="./becagis-sdk-bundle.js"></script>
+    <script>
+        var map = BCG.BecaGIS.createMap("map", {
+            zoom: 12, center: { lat: 11.245082438935025, lng: 106.58798217773438 }
+        }, {
+            geoPortal: {
+                geoPortalUrl: "https://geoportal-uat.becagis.vn",
+                loginInfo: {
+                    clientId: "I4BZdZwsLElOZ6B2EXN4nVkDznrvMcqfQLGq5mCa",
+                    clientSecret: "TvUClIJJBkqsGa3mG40hOqIL3FkV2LcFsVZZZ3N5A5wCAMprD1BelAK2BcjCoLYsxdsjscC9uKnxCD8KjlaTWMcsK5domStolGR8xbx6gzZCjW8c9KS88fAXHVkGGVB7",
+                    username: "test",
+                    password: "test"
+                },
+                layers: [{
+                    layers: "geonode:baubang_viahe",
+                    options: {
+                        featureInfo: true,
+                        featureInfoOptions: {
+                            showFeatureHandler: (feature) => {
+                                feature = JSON.parse(feature);
+                                console.log(feature.features[0]);
+                                BCG.geoJSON(feature.features[0]).addTo(map);
+                            }
+                        }
+                    }
+                }]
+            },
+            baseLayer: "Google"
+        })
+    </script>
+</body>
+
+</html>
