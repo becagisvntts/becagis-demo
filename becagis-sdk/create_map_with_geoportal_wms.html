@@ -44,6 +44,7 @@
                         featureInfo: true,
                         featureInfoOptions: {
                             showFeatureHandler: (feature) => {
+                                console.log(feature);
                                 feature = JSON.parse(feature);
                                 console.log(feature.features[0]);
                                 BCG.geoJSON(feature.features[0]).addTo(map);
